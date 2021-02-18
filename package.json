@@ -1,0 +1,31 @@
+{
+    "name": "webtravel",
+    "version": "1.0.0",
+    "description": "",
+    "main": "app.js",
+    "scripts": {
+        "start": "nodemon --inspect app.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/maivanday/nodejs-travel.git"
+    },
+    "keywords": [
+        "website",
+        "travel",
+        "nodejs"
+    ],
+    "author": "maivanday",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/maivanday/nodejs-travel/issues"
+    },
+    "homepage": "https://github.com/maivanday/nodejs-travel#readme",
+    "dependencies": {
+        "express": "^4.17.1"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.7"
+    }
+}
