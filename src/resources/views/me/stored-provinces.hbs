@@ -1,0 +1,191 @@
+<div class="container-fluid">
+    <div class="row">
+        <h2>Các khu vực đã thêm</h2>
+
+    </div>
+    <div class="row">
+        {{#if deletedCount}}
+        <a href="/me/trash/provinces">thùng rác ({{deletedCount}})</a>
+        {{/if}}
+
+    </div>
+    {{!-- from submit all --}}
+    <form action="/provinces/handle-form-actions" method="POST" name="container-form">
+
+        <div class="container mt-4 ">
+            <div class="d-flex align-items-center">
+
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="checkbox-all">
+                    <label class="form-check-label" for="checkbox-all">
+                        chọn tất cả
+                    </label>
+                </div>
+
+                <select class="form-control-sm select-all-options ml-3" name="action" required="required">
+                    <option>---------chọn hành động-----------</option>
+                    <option value="delete">xóa</option>
+
+                </select>
+
+                <button class="btn btn-primary btn-sm ml-3 checkAllBtn  " disabled="disabled">thực hiện</button>
+            </div>
+        </div>
+        <div class="container">
+            <table class="table">
+                <thead>
+                    <tr>
+
+                        <th scope="col" colspan="2">#</th>
+                        <th scope="col">Tên tỉnh</th>
+                        <th scope="col">Hình đại điện</th>
+                        <th scope="col" colspan="2">thời gian thêm</th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    {{#each provinces}}
+                    <tr>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="provinceIds[]"
+                                    value="{{this._id}}">
+
+                            </div>
+                        </td>
+                        <th scope="row">{{sum @index 1}}</th>
+                        <td>{{this.name}}</td>
+                        <td><img src="../../uploads/imgProvinces/{{this.img}}" alt="" width="150px"></td>
+                        <td>{{this.createdAt}}</td>
+                        <td>
+                            <a href="/provinces/{{this._id}}/edit" class="btn btn-primary">sua</a>
+                            <a href="" class="btn btn-danger" data-toggle="modal" data-id="{{this._id}}"
+                                data-target="#delete-province">xoa</a>
+                        </td>
+                    </tr>
+
+                    {{else}}
+                    <tr>
+                        <td colspan="4" class="text-center"> Bạn chưa thêm khu vực du lịch nào
+                            <a href="/provinces/create">Thêm tại đây</a>
+                        </td>
+                    </tr>
+
+
+                    {{/each}}
+
+                </tbody>
+            </table>
+            <!-- Modal -->
+
+
+        </div>
+    </form>
+
+
+
+    {{!-- //confirm delete provinces --}}
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="delete-province" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Bạn có muốn xóa dữ liệu tỉnh này</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    sau khi xóa dữ liệu sẻ được nằm trong thùng rác
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="btn-delete-province" class="btn btn-danger">Xóa</button>
+
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{!-- hidden form --}}
+    <form name="delete-province-form" method="POST" action=""></form>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var provinceId;
+            var deleteForm = document.forms['delete-province-form'];
+            //var submitAllForm = document.forms['container-form'];
+            var submitAllForm = $('form[name="container-form"]');
+
+            var btnDeleteProvince = document.getElementById('btn-delete-province');
+            var checkboxAll = $('#checkbox-all');
+            var provinceItemCheckbox = $('input[name="provinceIds[]"]');
+            var checkAllSubmitBtn = $('.checkAllBtn');
+
+
+
+            $('#delete-province').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget)
+                provinceId = button.data('id')
+
+            });
+
+            btnDeleteProvince.onclick = function () {
+                deleteForm.action = '/provinces/' + provinceId + "?_method=DELETE";
+                deleteForm.submit();
+            }
+            //checkbox all change
+            checkboxAll.change(function () {
+                // return boolean
+                var isCheckboxAll = $(this).prop("checked");
+                if (isCheckboxAll) {
+                    provinceItemCheckbox.prop("checked", isCheckboxAll);
+
+                } else {
+                    provinceItemCheckbox.prop("checked", isCheckboxAll);
+
+                }
+                renderCheckAllBtn();
+
+            });
+
+            // province Item Checkbox change 
+            provinceItemCheckbox.change(function () {
+                // count checkbox  vs checkbox run
+                isCheckboxAll = provinceItemCheckbox.length === $('input[name="provinceIds[]"]:checked').length;
+                checkboxAll.prop('checked', isCheckboxAll);
+                renderCheckAllBtn();
+            });
+
+            //check all submit btn
+            /*
+            submitAllForm.on('submit', function (e) {
+
+                var isSubmitable = !checkAllSubmitBtn.hasClass('disabled');
+                if (!isSubmitable) {
+                    e.preventDefault();
+                }
+            });
+            */
+
+            //r render check all button
+            function renderCheckAllBtn() {
+                var checkCount = $('input[name="provinceIds[]"]:checked').length;
+
+                if (checkCount > 0) {
+                    checkAllSubmitBtn.removeAttr('disabled');
+
+                } else {
+
+                    checkAllSubmitBtn.addAttr('disabled');
+                }
+            }
+
+
+        });
+
+    </script>

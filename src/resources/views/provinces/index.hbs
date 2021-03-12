@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="province-list">
+        <div class="row">
+
+            {{#each provinces}}
+
+            <div class="card col-md-6">
+                <a href="/provinces/{{this.slug}}">
+                    <img src="../../uploads/imgProvinces/{{this.img}}" class="card-img-top" alt="...">
+                </a>
+                <div class="card-body">
+                    <a href="/provinces/{{this.slug}}">
+
+                        <h5 class="card-title">{{this.name}}</h5>
+                    </a>
+
+                    <p class="card-text">{{this.description}}</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+
+    </div>
+</div>

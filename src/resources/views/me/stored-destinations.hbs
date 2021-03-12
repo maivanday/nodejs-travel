@@ -1,0 +1,85 @@
+<div class="container-fluid">
+    <div class="row">
+        <h2>Các khu vực đã thêm</h2>
+
+    </div>
+    <div class="row">
+        {{#if deletedCount}}
+        <a href="/me/trash/destinations">thùng rác ({{deletedCount}})</a>
+        {{/if}}
+
+    </div>
+    {{!-- from submit all --}}
+    <form action="/destinations/handle-form-actions" method="POST" name="container-form">
+
+        <div class="container mt-4 ">
+            <div class="d-flex align-items-center">
+
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="checkbox-all">
+                    <label class="form-check-label" for="checkbox-all">
+                        chọn tất cả
+                    </label>
+                </div>
+
+                <select class="form-control-sm select-all-options ml-3" name="action" required="required">
+                    <option>---------chọn hành động-----------</option>
+                    <option value="delete">xóa</option>
+
+                </select>
+
+                <button class="btn btn-primary btn-sm ml-3 checkAllBtn  " disabled="disabled">thực hiện</button>
+            </div>
+        </div>
+        <div class="container">
+            <table class="table">
+                <thead>
+                    <tr>
+
+                        <th scope="col" colspan="2">#</th>
+                        <th scope="col">cac diem den</th>
+                        <th scope="col">Hình đại điện</th>
+                        <th scope="col" colspan="2">thời gian thêm</th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    {{#each destination}}
+                    <tr>
+                        <td>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="destinationIds[]"
+                                    value="{{this._id}}">
+
+                            </div>
+                        </td>
+                        <th scope="row">{{sum @index 1}}</th>
+                        <td>{{this.name}}</td>
+                        <td><img src="../../uploads/imgDestinations/{{this.img[0]}}" alt="" width="150px"></td>
+                        <td>{{this.createdAt}}</td>
+                        <td>
+                            <a href="/destinations/{{this._id}}/edit" class="btn btn-primary">sua</a>
+                            <a href="" class="btn btn-danger" data-toggle="modal" data-id="{{this._id}}"
+                                data-target="#delete-destination">xoa</a>
+                        </td>
+                    </tr>
+
+                    {{else}}
+                    <tr>
+                        <td colspan="4" class="text-center"> Bạn chưa thêm khu vực du lịch nào
+                            <a href="/destinations/create">Thêm tại đây</a>
+                        </td>
+                    </tr>
+
+
+                    {{/each}}
+
+                </tbody>
+            </table>
+            <!-- Modal -->
+
+
+        </div>
+    </form>

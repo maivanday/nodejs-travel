@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="destination-list">
+        <div class="row">
+
+            {{#each destinations}}
+
+            <div class="card col-md-6">
+                <a href="/destinations/{{this.slug}}">
+                    <img src="../../uploads/imgDestinations/{{this.img}}" class="card-img-top" alt="...">
+                </a>
+                <div class="card-body">
+
+                    <p class="card-title">{{this.name}}</p>
+
+                    <p class="card-text">{{this.area}}</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+
+    </div>
+</div>

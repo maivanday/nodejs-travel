@@ -1,0 +1,41 @@
+<div class="container-full">
+    <div class="card col-md-6">
+
+        <img src="../../uploads/imgProvinces/{{province.img}}" class="card-img-top" alt="...">
+
+        <h5 class="card-title">{{province.name}}</h5>
+
+
+        <p class="card-text">{{province.description}}</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+</div>
+</div>
+<span> nhung khu vuc noi tieng o {{province.name}}</span>
+<div class="container-full">
+    <div class="row">
+
+        {{#each destination}}
+        <div class="card col-md-6">
+
+            <a href="/destinations/{{this.slug}}">
+                <img src="../../uploads/imgDestinations/{{this.img}}" class="card-img-top " alt="..." width="100px"
+                    height="200px">
+            </a>
+
+
+            <div class="card-body">
+
+
+                <h5 class="card-title">{{this.name}}</h5>
+
+
+                <p class="card-text">{{this.area}}</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+        </div>
+
+        {{/each}}
+
+    </div>
+</div>
