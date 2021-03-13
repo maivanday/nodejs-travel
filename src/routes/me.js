@@ -14,7 +14,8 @@ router.get('/trash/provinces', meController.trashProvinces);
 //[GET]me/stored/destinations
 router.get('/stored/destinations', meController.storedDestination);
 
-
+//[GET]/me/trash/destination
+router.get('/trash/destinations', meController.trashDestinations);
 
 
 module.exports = router;

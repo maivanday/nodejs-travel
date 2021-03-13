@@ -1,0 +1,114 @@
+<div class="container-fluid">
+    <div class="row">
+        <a href="/me/stored/destinations">Danh sách các bài viết</a>
+    </div>
+    <div class="row">
+        <h2>Các bài viết bạn đã xóa</h2>
+
+    </div>
+
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Tên bài viết</th>
+                    <th scope="col">Hình đại diện</th>
+                    <th scope="col" colspan="2">Thời gian xóa</th>
+
+                </tr>
+            </thead>
+            <tbody>
+
+                {{#each destinations}}
+                <tr>
+                    <th scope="row">{{sum @index 1}}</th>
+                    <td>{{this.name}}</td>
+                    {{#with this.img}}
+                    <td><img src="../../uploads/imgDestinations/{{this.[0]}}" alt="" width="150px"></td>
+                    {{/with}}
+                    <td>{{this.createdAt}}</td>
+                    <td>
+                        <a href="" class="btn btn-primary btn-restore " data-id="{{this._id}}">Khôi phục</a>
+                        <a href="" class="btn btn-danger" data-toggle="modal" data-id="{{this._id}}"
+                            data-target="#delete-destination">Xóa vỉnh viễn</a>
+                    </td>
+                </tr>
+
+                {{else}}
+                <tr>
+                    <td colspan="4" class="text-center"> Thùng rác trống
+                    </td>
+                </tr>
+
+
+                {{/each}}
+
+            </tbody>
+        </table>
+        <!-- Modal -->
+
+
+    </div>
+
+    {{!-- //confirm delete provinces --}}
+
+    <!-- Modal -->
+    <div class="modal fade" id="delete-destination" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Bạn có muốn xóa dữ liệu tỉnh này</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    sau khi xóa dữ liệu không thể phục hồi
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="btn-delete-destination" class="btn btn-danger">Xóa</button>
+
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{!-- hidden form --}}
+    <form name="delete-destination-form" method="POST" action=""></form>
+    <form name="restore-destination-form" method="POST" action=""></form>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var destinationId;
+            var deleteForm = document.forms['delete-destination-form']
+            var restoreForm = document.forms['restore-destination-form']
+            var btnDeleteDestination = document.getElementById('btn-delete-destination');
+            var restoreBtn = $('.btn-restore');
+
+
+            $('#delete-destination').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget)
+                destinationId = button.data('id')
+
+
+            });
+            btnDeleteDestination.onclick = function () {
+                deleteForm.action = '/destinations/' + destinationId + "/force/?_method=DELETE";
+                deleteForm.submit();
+            }
+
+            //restore btn
+            restoreBtn.click(function (e) {
+                e.preventDefault();
+                var destinationId = $(this).data('id');
+
+                restoreForm.action = '/destinations/' + destinationId + "/restore/?_method=PATCH";
+                restoreForm.submit();
+
+            });
+        });
+
+    </script>

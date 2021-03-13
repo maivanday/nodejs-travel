@@ -28,17 +28,36 @@ var upload = multer({
     }
 })
 
-//[GET]/destination
+//[GET]/destinations
 router.get('/', destinationController.index);
 
-//[GET]/destination/create
+//[GET]/destinations/create
 router.get('/create', destinationController.create);
 
-//[POST]/destination/store
+//[GET]/destinations/:id/edit
+router.get('/:id/edit', destinationController.edit);
+
+
+//[POST]/destinations/store
 router.post('/store', upload.array('img[]', 12), destinationController.upload);
 
-//[GET]/destination/:slug
+//[PUT]/province/:id
+router.put('/:id', upload.array('img[]', 12), destinationController.update);
+
+//[DELETE]/destinations/:id
+router.delete('/:id', destinationController.destroy);
+
+//[DELETE]/destinations/:id/force
+router.delete('/:id/force', destinationController.forceDestroy);
+
+
+//[PATCH]/destinations/:id/restore
+router.patch('/:id/restore', destinationController.restore);
+
+//[GET]/destinations/:slug
 router.get('/:slug', destinationController.showDetail);
+
+
 
 
 

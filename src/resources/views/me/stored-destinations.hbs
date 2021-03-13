@@ -35,13 +35,10 @@
             <table class="table">
                 <thead>
                     <tr>
-
                         <th scope="col" colspan="2">#</th>
                         <th scope="col">cac diem den</th>
                         <th scope="col">Hình đại điện</th>
                         <th scope="col" colspan="2">thời gian thêm</th>
-
-
                     </tr>
                 </thead>
                 <tbody>
@@ -57,7 +54,11 @@
                         </td>
                         <th scope="row">{{sum @index 1}}</th>
                         <td>{{this.name}}</td>
-                        <td><img src="../../uploads/imgDestinations/{{this.img[0]}}" alt="" width="150px"></td>
+                        {{#with this.img}}
+                        <td><img src="../../uploads/imgDestinations/{{this.[0]}}" alt="" width="150px"></td>
+                        {{/with}}
+                        {{!--
+                        <td><img src="../../uploads/imgDestinations/{{this.img.1.1}}" alt="" width="150px"></td> --}}
                         <td>{{this.createdAt}}</td>
                         <td>
                             <a href="/destinations/{{this._id}}/edit" class="btn btn-primary">sua</a>
@@ -73,13 +74,107 @@
                         </td>
                     </tr>
 
-
                     {{/each}}
 
                 </tbody>
             </table>
             <!-- Modal -->
+            <div class="modal fade" id="delete-destination" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Bạn có muốn xóa dữ liệu tỉnh này</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            sau khi xóa dữ liệu sẻ được nằm trong thùng rác
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" id="btn-delete-destination" class="btn btn-danger">Xóa</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
 
         </div>
     </form>
+    {{!-- hidden form --}}
+    <form name="delete-destination-form" method="POST" action=""></form>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var destinationId;
+            var deleteForm = document.forms['delete-destination-form'];
+            //var submitAllForm = document.forms['container-form'];
+            var submitAllForm = $('form[name="container-form"]');
+
+            var btnDeletedestination = document.getElementById('btn-delete-destination');
+            var checkboxAll = $('#checkbox-all');
+            var destinationItemCheckbox = $('input[name="destinationIds[]"]');
+            var checkAllSubmitBtn = $('.checkAllBtn');
+
+
+
+            $('#delete-destination').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget)
+                destinationId = button.data('id')
+
+            });
+
+            btnDeletedestination.onclick = function () {
+                deleteForm.action = '/destinations/' + destinationId + "?_method=DELETE";
+                deleteForm.submit();
+            }
+            //checkbox all change
+            checkboxAll.change(function () {
+                // return boolean
+                var isCheckboxAll = $(this).prop("checked");
+                if (isCheckboxAll) {
+                    destinationItemCheckbox.prop("checked", isCheckboxAll);
+
+                } else {
+                    destinationItemCheckbox.prop("checked", isCheckboxAll);
+
+                }
+                renderCheckAllBtn();
+
+            });
+
+            // destination Item Checkbox change 
+            destinationItemCheckbox.change(function () {
+                // count checkbox  vs checkbox run
+                isCheckboxAll = destinationItemCheckbox.length === $('input[name="destinationIds[]"]:checked').length;
+                checkboxAll.prop('checked', isCheckboxAll);
+                renderCheckAllBtn();
+            });
+
+            //check all submit btnss
+            /*
+            submitAllForm.on('submit', function (e) {
+ 
+                var isSubmitable = !checkAllSubmitBtn.hasClass('disabled');
+                if (!isSubmitable) {
+                    e.preventDefault();
+                }
+            });
+            */
+            //r render check all button
+            function renderCheckAllBtn() {
+                var checkCount = $('input[name="destinationIds[]"]:checked').length;
+
+                if (checkCount > 0) {
+                    checkAllSubmitBtn.removeAttr('disabled');
+
+                } else {
+
+                    checkAllSubmitBtn.addAttr('disabled');
+                }
+            }
+        });
+
+    </script>

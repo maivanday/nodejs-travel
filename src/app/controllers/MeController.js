@@ -20,7 +20,6 @@ class MeController {
             )
             .catch(next)
 
-
         // count deleted
         // Province.countDocumentsDeleted()
         //     .then((deletedCount) => {
@@ -50,14 +49,23 @@ class MeController {
     // [GET] /me/stored/destinations
     storedDestination(req, res, next) {
         // gom 2 promise 
-        Promise.all([Destination.find({})])
-            .then(([destination]) =>
+        Promise.all([Destination.find({}), Destination.countDocumentsDeleted()])
+            .then(([destination, deletedCount]) =>
                 res.render('me/stored-destinations', {
-
+                    deletedCount,
                     destination: mutipleMongooseToObject(destination)
                 })
             )
             .catch(next)
+    }
+
+    // [GET] /me/trash/destinations
+    trashDestinations(req, res, next) {
+        Destination.findDeleted({})
+            .then(destinations => res.render('me/trash-destinations', {
+                destinations: mutipleMongooseToObject(destinations)
+            }))
+            .catch(next);
     }
 
 }

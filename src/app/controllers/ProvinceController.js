@@ -93,7 +93,6 @@ class ProvinceController {
 
     //[POST] /provinces/handle-form-actions
     handleFormActions(req, res, next) {
-
         switch (req.body.action) {
             case 'delete':
                 Province.delete({ _id: { $in: req.body.provinceIds } }, )
@@ -105,6 +104,9 @@ class ProvinceController {
                 res.json({ messenger });
         }
     }
+
+
+
 
     //[DELETE] /provinces/:id/force
     forceDestroy(req, res, next) {

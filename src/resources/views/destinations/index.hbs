@@ -6,7 +6,10 @@
 
             <div class="card col-md-6">
                 <a href="/destinations/{{this.slug}}">
-                    <img src="../../uploads/imgDestinations/{{this.img}}" class="card-img-top" alt="...">
+                    {{#with this.img}}
+                    <img src="../../uploads/imgDestinations/{{this.[1]}}" alt="" width="550px"></a>
+                {{/with}}
+
                 </a>
                 <div class="card-body">
 

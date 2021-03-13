@@ -15,7 +15,6 @@ class DestinationController {
         // viet theo promise
         Destination.find({})
             .then(destinations => {
-
                 // provinces: provinces
                 // neu key = value ta co the viet 1 cai
                 res.render('destinations/index', {
@@ -31,6 +30,15 @@ class DestinationController {
         res.render('destinations/createDestination')
     }
 
+    // [GET] /destinations/:id/edit
+    edit(req, res, next) {
+        Destination.findById(req.params.id)
+            .then(destination => res.render('destinations/editDestination', {
+                destination: mongooseToObject(destination)
+            }))
+            .catch(next);
+
+    }
 
     // [POST] /destinations/store
     upload(req, res, next) {
@@ -46,6 +54,7 @@ class DestinationController {
             description: req.body.description,
             img: filenames,
             area: req.body.area,
+
         });
 
         destination.save()
@@ -54,10 +63,7 @@ class DestinationController {
 
     };
 
-
-
-
-    // [GET] /provinces/:slug
+    // [GET] /destinations/:slug
     showDetail(req, res, next) {
         Destination.findOne({ slug: req.params.slug })
             .then((destination) => {
@@ -67,8 +73,57 @@ class DestinationController {
                 // res.json({ province });
             })
             .catch(next);
+    };
 
-
+    //[DELETE] /destinations/:id
+    destroy(req, res, next) {
+        Destination.delete({ _id: req.params.id }, )
+            .then(() => res.redirect('back'))
+            .catch(next);
     }
+
+
+    //[DELETE] /destinations/:id/force
+    forceDestroy(req, res, next) {
+        Destination.deleteOne({ _id: req.params.id }, )
+            .then(() => res.redirect('back'))
+            .catch(next);
+    }
+
+    //[PATCH] /destinations/:id/restore
+    restore(req, res, next) {
+        Destination.restore({ _id: req.params.id }, )
+            .then(() => res.redirect('back'))
+            .catch(next);
+    }
+
+
+    //[PUT] /destinations/:id
+    update(req, res, next) {
+        //if no choose new file
+        if (!req.files) {
+
+            Destination.updateOne({ _id: req.params.id }, {
+                    name: req.body.name,
+                    description: req.body.description,
+                    area: req.body.area,
+                })
+                .then(() => res.redirect('/me/stored/destinations'))
+                .catch(next);
+        } else {
+            var filenames = req.files.map(function(file) {
+                return file.filename;
+            });
+            Destination.updateOne({ _id: req.params.id }, {
+                    name: req.body.name,
+                    description: req.body.description,
+                    img: filenames,
+                    area: req.body.area,
+                })
+                .then(() => res.redirect('/me/stored/destinations'))
+                .catch(next);
+        }
+    }
+
 }
 module.exports = new DestinationController;
