@@ -50,13 +50,16 @@ router.delete('/:id', destinationController.destroy);
 //[DELETE]/destinations/:id/force
 router.delete('/:id/force', destinationController.forceDestroy);
 
+//[POST]/destination/:id
+router.post('/handle-form-actions', destinationController.handleFormActions);
+
+
 
 //[PATCH]/destinations/:id/restore
 router.patch('/:id/restore', destinationController.restore);
 
 //[GET]/destinations/:slug
 router.get('/:slug', destinationController.showDetail);
-
 
 
 

@@ -125,5 +125,20 @@ class DestinationController {
         }
     }
 
+
+
+    //[POST] /destinations/handle-form-actions
+    handleFormActions(req, res, next) {
+        switch (req.body.action) {
+            case 'delete':
+                Destination.delete({ _id: { $in: req.body.destinationIds } }, )
+                    .then(() => res.redirect('back'))
+                    .catch(next);
+                break;
+
+            default:
+                res.json({ messenger });
+        }
+    }
 }
 module.exports = new DestinationController;

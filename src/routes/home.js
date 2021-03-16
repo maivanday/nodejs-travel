@@ -3,7 +3,7 @@ const router = express.Router();
 const homeController = require('../app/controllers/HomeController');
 
 
-//[GET]/province
+//[GET]/
 router.get('/', homeController.show);
 
 
