@@ -1,26 +1,29 @@
-<div class="container margin-top">
-    <div class="destination-list">
-        <div class="row">
+<div class="container-fluid margin-top">
+    <div class="row">
+        <a href="/">Home</a>
+        <span class="fas fa-chevron-right">destinations</span>
+    </div>
+</div>
 
-            {{#each destinations}}
-
-            <div class="card col-md-6">
+<div class="container ">
+    <div class="row ">
+        {{#each destinations}}
+        <div class=" col-md-4  destination-item  ">
+            <div class="destination-img">
                 <a href="/destinations/{{this.slug}}">
                     {{#with this.img}}
-                    <img src="../../uploads/imgDestinations/{{this.[1]}}" alt="" width="550px"></a>
-                {{/with}}
-
+                    <img src="../../uploads/imgDestinations/{{this.[0]}}" alt="" width="100%" height="100%">
+                    {{/with}}
                 </a>
-                <div class="card-body">
-
-                    <p class="card-title">{{this.name}}</p>
-
-                    <p class="card-text">{{this.area}}</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
             </div>
-            {{/each}}
+            <div class="destination-body">
+                <a href="/destinations/{{this.slug}}">
+                    <h5>{{this.name}}</h5>
+                </a>
+                <p>Khu vực: {{this.area}}</p>
+            </div>
         </div>
-
+        {{/each}}
     </div>
+
 </div>

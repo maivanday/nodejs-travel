@@ -28,8 +28,8 @@
         </div>
     </div>
 </div>
-{{!-- destinations --}}
-<div class="container mt-5 bg-red">
+{{!-- show destinations --}}
+<div class="container mt-5 ">
     <div class="row ">
         {{#each destinations}}
         <div class="col-md-4 destination-item  ">
@@ -52,28 +52,40 @@
 </div>
 
 
-
-</div>
-
-
-{{!--
-item in destinations --}}
+{{!--show provinces --}}
 <div class="container mt-5">
     <div class="row">
         <div id="content">
             <div class="content-section">
-                <h2 class="section-heading">Những điểm đến tuyệt vời</h2>
-                <p class="section-heading-sub mt-2">Hòa mình với vùng đất chín rồng</p>
+                <h2 class="section-heading">Khám phá 13 tỉnh Đồng Bằng Sông Cửu Long</h2>
+                <p class="section-heading-sub mt-2">Tìm hiểu thiên nhiên, con người nơi miền sông nước</p>
                 <p class="text">
-                    Năm 2020 gắn đại dịch Covid 19, người Việt Nam không thể đi du lịch quốc tế và chọn các địa điểm du
-                    lịch
-                    trong nước làm
-                    điểm đến cho bản thân, gia đình, bạn bè. Đồng Bằng Sông Cửu Long có nhiều cảnh đẹp, món ăn ngon và
-                    giá rẻ
-                    nên được rất
-                    nhiều người chọn làm điểm đến hàng đầu.
+                    Được bồi đắp bởi phù sa màu mỡ của sông Cửu Long với 2 nhánh chính là sông Tiền và sông Hậu, hệ
+                    thống kênh rạch chằng
+                    chịt cùng rừng xanh và biển đảo đã hình thành cho ĐBSCL một hệ sinh thái đa dạng, tạo nên những cảnh
+                    quan đặc sắc, hấp
+                    dẫn.
                 </p>
             </div>
         </div>
+    </div>
+</div>
+<div class="container mt-5 ">
+    <div class="row ">
+        {{#each provinces}}
+        <div class="col-md-4 destination-item  ">
+            <div class="destination-img">
+                <a href="/provinces/{{this.slug}}">
+                    <img src="../../uploads/imgProvinces/{{this.img}}" alt="" width="100%" height="100%">
+                </a>
+            </div>
+            <div class="destination-body">
+                <a href="/provinces/{{this.slug}}">
+                    <h5>{{this.name}}</h5>
+                </a>
+                <p>Khu vực: {{this.description}}</p>
+            </div>
+        </div>
+        {{/each}}
     </div>
 </div>

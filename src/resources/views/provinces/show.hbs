@@ -1,41 +1,40 @@
-<div class="container-full">
-    <div class="card col-md-6">
-
-        <img src="../../uploads/imgProvinces/{{province.img}}" class="card-img-top" alt="...">
-
-        <h5 class="card-title">{{province.name}}</h5>
-
-
-        <p class="card-text">{{province.description}}</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-    </div>
+<div class="container margin-top">
+   <div class="row ">
+                <div class="col-12">
+                    <div class="destination-body">
+                   
+                        <h3 class="text-center">Khám phá những nét đặc trưng của tỉnh {{province.name}}</h3>
+                
+                        <p class="text">{{province.description}}</p>
+                    </div>
+                    <a href="/provinces/{{province.slug}}">
+                        <img src="../../uploads/imgProvinces/{{province.img}}" class="card-img-top" alt="...">
+                    </a>
+                </div>
+        </div>
 </div>
-</div>
-<span> nhung khu vuc noi tieng o {{province.name}}</span>
-<div class="container-full">
-    <div class="row">
 
+
+<div class="container margin-top">
+    <h3 class="text-center"> Những điểm du lịch nổi tiếng ở {{province.name}}</h3>
+    <h5 class="text-center">Khám phá ngay</h5>
+    <div class="row margin-top">
         {{#each destination}}
-        <div class="card col-md-6">
-
-            <a href="/destinations/{{this.slug}}">
-                <img src="../../uploads/imgDestinations/{{this.img}}" class="card-img-top " alt="..." width="100px"
-                    height="200px">
-            </a>
-
-
-            <div class="card-body">
-
-
-                <h5 class="card-title">{{this.name}}</h5>
-
-
-                <p class="card-text">{{this.area}}</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+        <div class="col-md-4 destination-item  ">
+            <div class="destination-img">
+                <a href="/destinations/{{this.slug}}">
+                    {{#with this.img}}
+                    <img src="../../uploads/imgDestinations/{{this.[1]}}" alt="" width="100%" height="100%">
+                    {{/with}}
+                </a>
+            </div>
+            <div class="destination-body">
+                <a href="/destinations/{{this.slug}}">
+                    <h5>{{this.name}}</h5>
+                </a>
+                <p>Khu vực: {{this.area}}</p>
             </div>
         </div>
-
         {{/each}}
-
     </div>
 </div>

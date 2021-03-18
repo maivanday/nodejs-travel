@@ -1,30 +1,43 @@
 <div class="container margin-top">
     <div class="destination-list">
         <div class="row">
+
             <div class=" col-12">
+                <h3 class="text-center">Giới Thiệu {{destination.name}}</h3>
+                <div class="destination-body">
+                    <p>{{destination.description}}</p>
+                </div>
                 <a href="/destinations/{{destination.slug}}">
-
                     {{#with destination.img}}
-                    <img src="../../uploads/imgDestinations/{{this.[1]}}" alt="" width="550px" class="card-img-top">
-
+                    <img src="../../uploads/imgDestinations/{{this.[1]}}" alt="" width="100%">
                     {{/with}}
                 </a>
-                <div class="card-body">
-
-                    <p class="card-title">{{destination.name}}</p>
-
-                    <p class="card-text">{{destination.area}}</p>
-
-                </div>
             </div>
+
             <div class="col-12">
+                <div class="destination-body">
+                    <p>Một số hình ảnh về {{destination.name}}</p>
+                </div>
                 {{#with destination.img}}
                 <img src="../../uploads/imgDestinations/{{this.[0]}}" alt="" width="550px" class="card-img-top">
-
                 {{/with}}
-                <p class="card-text">{{destination.description}}</p>
             </div>
-
+            <div class="col-12">
+                <div class="destination-body">
+                    <p> {{destination.name}}</p>
+                </div>
+                {{#with destination.img}}
+                <img src="../../uploads/imgDestinations/{{this.[2]}}" alt="" width="550px" class="card-img-top">
+                {{/with}}
+            </div>
+            <div class="col-12">
+                <div class="destination-body">
+                    <p> {{destination.name}}</p>
+                </div>
+                {{#with destination.img}}
+                <img src="../../uploads/imgDestinations/{{this.[3]}}" alt="" width="550px" class="card-img-top">
+                {{/with}}
+            </div>
         </div>
 
     </div>

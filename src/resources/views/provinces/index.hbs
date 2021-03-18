@@ -1,25 +1,40 @@
-<div class="container">
-    <div class="province-list">
-        <div class="row">
-
+<div class="container-fluid margin-top">
+    <!-- Tab items -->
+    <div class="tabs">
+        <div class="row ">
             {{#each provinces}}
+            <div class="tab-item active ">
+                {{this.name}}
+            </div>
+            {{/each}}
+            <div class="line"></div>
+        </div>
+    </div>
 
-            <div class="card col-md-6">
-                <a href="/provinces/{{this.slug}}">
-                    <img src="../../uploads/imgProvinces/{{this.img}}" class="card-img-top" alt="...">
-                </a>
-                <div class="card-body">
-                    <a href="/provinces/{{this.slug}}">
-
-                        <h5 class="card-title">{{this.name}}</h5>
+    <!-- Tab content -->
+    <div class="tab-content mt-5 container">
+        {{!-- cantho --}}
+        <div class="row ">
+            {{#each provinces}}
+            <div class="tab-pane active">
+                <div class=" col-12">
+                    <div class="destination-body">
+                   
+                        <h5 class="text-center">Giới thiệu đôi nét về tỉnh {{this.name}}</h5>
+                   
+                
+                        <p class="text">{{this.description}}</p>
+                      <a href="/provinces/{{this.slug}} ">
+                        <h6 class="text-right">Tìm hiểu thêm về {{this.name}}....</h5>
                     </a>
-
-                    <p class="card-text">{{this.description}}</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                    <a href="/provinces/{{this.slug}}">
+                        <img src="../../uploads/imgProvinces/{{this.img}}" class="card-img-top" alt="...">
+                    </a>
                 </div>
             </div>
             {{/each}}
+        
         </div>
-
     </div>
 </div>

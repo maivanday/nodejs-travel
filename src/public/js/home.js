@@ -1,11 +1,28 @@
-$("#myCarousel").carousel();
+ const $ = document.querySelector.bind(document)
+ const $$ = document.querySelectorAll.bind(document)
+     // get tabs 
+ const tabs = $$('.tab-item');
+ const panes = $$('.tab-pane');
+ // get tabActive to show line
+ const tabActive = $('.tab-item.active');
+ const line = $('.tabs .line');
+ // set css line
+ line.style.left = tabActive.offsetLeft + 'px';
+ line.style.width = tabActive.offsetWidth + 'px';
 
-// Enable Carousel Indicators
-$(".item").click(function() {
-    $("#myCarousel").carousel(1);
-});
 
-// Enable Carousel Controls
-$(".carousel-control-prev").click(function() {
-    $("#myCarousel").carousel("prev");
-});
+ tabs.forEach((tab, index) => {
+
+     const pane = panes[index]
+     tab.onclick = function() {
+
+         $('.tab-item.active').classList.remove('active');
+         $('.tab-pane.active').classList.remove('active');
+         line.style.left = this.offsetLeft + 'px';
+         line.style.width = this.offsetWidth + 'px';
+
+         this.classList.add('active');
+         pane.classList.add('active');
+
+     }
+ })
