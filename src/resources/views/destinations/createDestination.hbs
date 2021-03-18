@@ -1,35 +1,47 @@
-<div class="container">
-
+<div class="container margin-top text-center">
     <h3>
-        them cac diem du lich
+        Thêm các địa điểm du lịch
     </h3>
 
+
 </div>
-<form method="POST" action="/destinations/store" enctype="multipart/form-data">
-    <div class="form-group">
-        <label for="name">ten dia diem</label>
-        <input type="name" class="form-control" id="name" placeholder="nhap ten dia diem" name="name">
+<div class="container">
+    <form method="POST" action="/destinations/store" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="name">Tên địa điểm</label>
+            <input type="name" class="form-control" id="name" placeholder="Nhập tên địa điểm" name="name">
 
-    </div>
-    <div class="form-group">
-        <label for="description">noi dung bai viet</label>
-        <input type="text-area" class="form-control" id="description" placeholder="mo ta" name="description">
-    </div>
-    <div class="form-group">
-        <label for="img">them hinh anh</label>
-        <input type="file" name="img[]" multiple="multiple">
-    </div>
-    <div class="form-group">
-        <label for="area">chon khu vuc</label>
-        <select id="area" name="area">
-            <option value="can-tho">cantho</option>
-            <option value="hau-giang">hau giang</option>
-            <option value="kieng giang">kien giang</option>
-            <option value="ca mau">ca mau</option>
-        </select>
-    </div>
+        </div>
+        <div class="form-group">
+            <label for="description">Nội dung giới thiệu</label>
+            <textarea id="description" name="description" rows="10" cols="100" class="form-control">
+              </textarea>
+        </div>
+        <div class="form-group">
+            <label for="img">Thêm hình ảnh</label>
+            <input type="file" name="img[]" multiple="multiple">
+        </div>
+        <div class="form-group">
+            <label for="area">Chọn khu vực</label>
+            <select id="area" name="area">
+                <option value="can-tho">Cần Thơ</option>
+                <option value="hau-giang">Hậu Giang</option>
+                <option value="kien-giang">Kiên Giang</option>
+                <option value="bac-lieu">Bạc Liêu</option>
+                <option value="ca-mau">Cà Mau</option>
+                <option value="soc-trang">Sóc Trăng</option>
+                <option value="dong-thap">Đồng Tháp</option>
+                <option value="an-giang">An Giang</option>
+                <option value="tra-vinh">Trà Vinh</option>
+                <option value="vinh-long">Vĩnh Long</option>
+                <option value="ben-tre">Bến Tre</option>
+                <option value="long-an">Long An</option>
+                <option value="tien-giang">Tiền Giang</option>
+            </select>
+        </div>
 
 
 
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>

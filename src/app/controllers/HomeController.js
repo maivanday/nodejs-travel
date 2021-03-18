@@ -6,22 +6,23 @@ const { mongooseToObject } = require('../../until/mongoose');
 class HomeController {
     //[GET] /
     // async await 
-    async show(req, res, next) {
+    async showHome(req, res, next) {
+        // const provinces = await Province.find({});
+        // const destinations = await Destination.find({});
+        // res.json({ provinces, destinations });
+
         try {
-            const provinces = await Province.find({})
-            const destinations = await Destination.find({})
+            const provinces = await Province.find({});
+            const destinations = await Destination.find({});
             res.render('home', {
-                provinces: mongooseToObject(provinces),
+                provinces: mutipleMongooseToObject(provinces),
                 destinations: mutipleMongooseToObject(destinations),
             });
         }
         // res.json({ province });
-        catch (next) {
+        catch (next) {}
 
-        }
     }
-
-
 
 
 }

@@ -28,13 +28,32 @@
         </div>
     </div>
 </div>
-{{!-- item in destinations --}}
-<div class="container col-md-4">
-
+{{!-- destinations --}}
+<div class="container mt-5 bg-red">
+    <div class="row ">
+        {{#each destinations}}
+        <div class="col-md-4 destination-item  ">
+            <div class="destination-img">
+                <a href="/destinations/{{this.slug}}">
+                    {{#with this.img}}
+                    <img src="../../uploads/imgDestinations/{{this.[0]}}" alt="" width="100%" height="100%">
+                    {{/with}}
+                </a>
+            </div>
+            <div class="destination-body">
+                <a href="/destinations/{{this.slug}}">
+                    <h5>{{this.name}}</h5>
+                </a>
+                <p>Khu vực: {{this.area}}</p>
+            </div>
+        </div>
+        {{/each}}
+    </div>
 </div>
 
 
 
+</div>
 
 
 {{!--

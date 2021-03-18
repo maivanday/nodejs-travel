@@ -24,7 +24,12 @@
     #logo {}
 }
 
-// -------------------------home--------------------------------
+// add class general for all
+.margin-top {
+    margin-top: 150px;
+}
+
+// -------------------------home-----------------------------------------------------------
 .slide {
     position: relative;
     margin-top: 113px;
@@ -67,5 +72,26 @@
         font-size: 20px;
         text-align: justify;
         line-height: 1.6;
+    }
+}
+
+//show description 
+.destination-item {}
+
+.destination-img {
+    width: 350px;
+    height: 240px;
+    transition: transform .8s;
+}
+
+.destination-img:hover {
+    transform: scale(1.035);
+}
+
+.destination-body {
+    padding: 16px;
+    font-size: 15px;
+    a {
+        text-decoration: none;
     }
 }
