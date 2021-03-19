@@ -1,34 +1,37 @@
-<div class="container">
+<div class="container margin-top">
 
-    <h3>
-        cap nhat thong tin khu vuc du lich
+    <h3 class="text-center">
+        Cập nhật thông tin khu vực
     </h3>
 
 </div>
-<form method="POST" action="/provinces/{{province._id}}?_method=PUT" enctype="multipart/form-data">
-    <div class="form-group">
-        <label for="name">ten tinh</label>
-        <input type="name" class="form-control" value="{{province.name}}" id="name" placeholder="nhap ten tinh"
-            name="name">
+<div class="container">
 
-    </div>
-    <div class="form-group">
-        <label for="description">mo ta</label>
-        <textarea class="form-control" id="description" placeholder="mo ta"
-            name="description">{{province.description}}</textarea>
-    </div>
+    <form method="POST" action="/provinces/{{province._id}}?_method=PUT" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="name">Tên tỉnh</label>
+            <input type="name" class="form-control" value="{{province.name}}" id="name" placeholder="nhap ten tinh"
+                name="name">
 
-    <div class="form-group">
+        </div>
+        <div class="form-group">
+            <label for="description">Giới thiệu</label>
+            <textarea class="form-control" id="description" placeholder="mo ta" rows="10" cols="100"
+                name="description">{{province.description}}</textarea>
+        </div>
 
-        <label for="">hinh anh</label>
-        <input type="file" class="form-control-file" name="imgProvince">
-        <div class="col-md-4 ">
-            <div class="row">
-                <img src="../../uploads/imgProvinces/{{province.img}}" width="100" height="100" alt="">
+        <div class="form-group">
+
+            <label for="">Ảnh đại diện</label>
+            <input type="file" class="form-control-file" name="imgProvince">
+            <div class="col-md-4 ">
+                <div class="row">
+                    <img src="../../uploads/imgProvinces/{{province.img}}" width="100" height="100" alt="">
+                </div>
             </div>
         </div>
-    </div>
 
 
-    <button type="submit" class="btn btn-primary">cap nhat</button>
-</form>
+        <button type="submit" class="btn btn-primary">Cập nhật</button>
+    </form>
+</div>

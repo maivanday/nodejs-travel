@@ -19,14 +19,14 @@
             <div class="tab-pane active">
                 <div class=" col-12">
                     <div class="destination-body">
-                   
+
                         <h5 class="text-center">Giới thiệu đôi nét về tỉnh {{this.name}}</h5>
-                   
-                
+
+
                         <p class="text">{{this.description}}</p>
-                      <a href="/provinces/{{this.slug}} ">
-                        <h6 class="text-right">Tìm hiểu thêm về {{this.name}}....</h5>
-                    </a>
+                        <a href="/provinces/{{this.slug}} ">
+                            <h6 class="text-right">Tìm hiểu thêm về {{this.name}}....</h5>
+                        </a>
                     </div>
                     <a href="/provinces/{{this.slug}}">
                         <img src="../../uploads/imgProvinces/{{this.img}}" class="card-img-top" alt="...">
@@ -34,7 +34,9 @@
                 </div>
             </div>
             {{/each}}
-        
+
         </div>
     </div>
 </div>
+{{!-- js for line css --}}
+<script src="../../js/tabUi.js"></script>

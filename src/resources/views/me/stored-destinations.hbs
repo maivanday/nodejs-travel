@@ -1,13 +1,12 @@
-<div class="container-fluid">
-    <div class="row">
+<div class="container-fluid margin-top">
+    <div class="row ml-3 ">
         <h2>Các khu vực đã thêm</h2>
 
     </div>
-    <div class="row">
+    <div class="row ml-3">
         {{#if deletedCount}}
-        <a href="/me/trash/destinations">thùng rác ({{deletedCount}})</a>
+        <a href="/me/trash/destinations">Thùng rác ({{deletedCount}})</a>
         {{/if}}
-
     </div>
     {{!-- from submit all --}}
     <form action="/destinations/handle-form-actions" method="POST" name="container-form">
@@ -35,34 +34,35 @@
                 <thead>
                     <tr>
                         <th scope="col" colspan="2">#</th>
-                        <th scope="col">cac diem den</th>
+                        <th scope="col">Các điểm du lịch</th>
                         <th scope="col">Hình đại điện</th>
-                        <th scope="col" colspan="2">thời gian thêm</th>
+                        <th scope="col" colspan="2">Thời gian thêm</th>
+
+
                     </tr>
                 </thead>
                 <tbody>
-
                     {{#each destination}}
                     <tr>
                         <td>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" name="destinationIds[]"
                                     value="{{this._id}}">
-
                             </div>
                         </td>
                         <th scope="row">{{sum @index 1}}</th>
                         <td>{{this.name}}</td>
-                        {{#with this.img}}
-                        <td><img src="../../uploads/imgDestinations/{{this.[0]}}" alt="" width="150px"></td>
-                        {{/with}}
-                        {{!--
-                        <td><img src="../../uploads/imgDestinations/{{this.img.1.1}}" alt="" width="150px"></td> --}}
+                        <td>
+                            {{#with this.img}}
+                            <img src="../../uploads/imgDestinations/{{this.[0]}}" alt="" width="150px">
+                            {{/with}}
+                        </td>
+
                         <td>{{this.createdAt}}</td>
                         <td>
-                            <a href="/destinations/{{this._id}}/edit" class="btn btn-primary">sua</a>
+                            <a href="/destinations/{{this._id}}/edit" class="btn btn-primary">Sửa</a>
                             <a href="" class="btn btn-danger" data-toggle="modal" data-id="{{this._id}}"
-                                data-target="#delete-destination">xoa</a>
+                                data-target="#delete-destination">Xóa</a>
                         </td>
                     </tr>
 
@@ -83,13 +83,13 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">Bạn có muốn xóa dữ liệu tỉnh này</h5>
+                            <h5 class="modal-title" id="exampleModalLongTitle">Bạn có muốn xóa điểm du lịch này</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                            sau khi xóa dữ liệu sẻ được nằm trong thùng rác
+                            Sau khi xóa dữ liệu sẻ được nằm trong thùng rác
                         </div>
                         <div class="modal-footer">
                             <button type="button" id="btn-delete-destination" class="btn btn-danger">Xóa</button>
