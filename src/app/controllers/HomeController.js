@@ -13,7 +13,9 @@ class HomeController {
 
         try {
             const provinces = await Province.find({});
+
             const destinations = await Destination.find({});
+
             res.render('home', {
                 provinces: mutipleMongooseToObject(provinces),
                 destinations: mutipleMongooseToObject(destinations),

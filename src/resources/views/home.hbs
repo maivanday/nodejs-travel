@@ -45,6 +45,7 @@
                     <h5>{{this.name}}</h5>
                 </a>
                 <p>Khu vực: {{this.area}}</p>
+
             </div>
         </div>
         {{/each}}
@@ -83,7 +84,8 @@
                 <a href="/provinces/{{this.slug}}">
                     <h5>{{this.name}}</h5>
                 </a>
-                <p>Khu vực: {{this.description}}</p>
+                <p class="description">Khu vực: {{this.description}}</p>
+                <a href="/provinces/{{this.slug}}">Xem Thêm</a>
             </div>
         </div>
         {{/each}}

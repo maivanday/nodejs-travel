@@ -78,6 +78,8 @@ class ProvinceController {
                     name: req.body.name,
                     description: req.body.description,
                     img: req.file.filename,
+                    slug: req.body.name
+
                 })
                 .then(() => res.redirect('/me/stored/provinces'))
                 .catch(next);
@@ -151,10 +153,11 @@ class ProvinceController {
     index(req, res, next) {
         // viet theo promise
         Province.find({})
-            .then(provinces => {
 
+        .then(provinces => {
                 // provinces: provinces
                 // neu key = value ta co the viet 1 cai
+
                 res.render('provinces/index', {
                     provinces: mutipleMongooseToObject(provinces)
                 });

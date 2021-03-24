@@ -102,6 +102,14 @@ P {
     a {
         text-decoration: none;
     }
+    .description {
+        height: 187.8px;
+        overflow: hidden;
+        display: block;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 6;
+    }
 }
 
 

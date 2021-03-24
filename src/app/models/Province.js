@@ -8,6 +8,8 @@ const Province = new Schema({
     description: { type: String },
     img: { type: String },
     slug: { type: String, slug: "name", unique: true }
+
+
 }, {
     timestamps: true,
 });
