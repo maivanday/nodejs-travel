@@ -16,7 +16,6 @@ const Destination = new Schema({
 });
 
 // add plugin
-
 mongoose.plugin(slug);
 Destination.plugin(mongooseDelete, {
     deleteAt: true,

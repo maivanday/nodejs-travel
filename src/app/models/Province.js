@@ -7,7 +7,7 @@ const Province = new Schema({
     name: { type: String },
     description: { type: String },
     img: { type: String },
-    slug: { type: String, slug: "name", unique: true }
+    slug: { type: String, slug: "name", unique: true, slugOn: { updateOne: true } }
 
 
 }, {

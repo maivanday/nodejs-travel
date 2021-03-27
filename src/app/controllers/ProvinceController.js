@@ -80,6 +80,8 @@ class ProvinceController {
                     img: req.file.filename,
                     slug: req.body.name
 
+
+
                 })
                 .then(() => res.redirect('/me/stored/provinces'))
                 .catch(next);

@@ -10,7 +10,6 @@ class HomeController {
         // const provinces = await Province.find({});
         // const destinations = await Destination.find({});
         // res.json({ provinces, destinations });
-
         try {
             const provinces = await Province.find({});
 
