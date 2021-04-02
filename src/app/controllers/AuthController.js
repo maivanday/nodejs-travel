@@ -9,7 +9,10 @@ class AuthController {
 
     //[GET]/auth/register
     showFormRegister(req, res, next) {
-        res.render('auth/register')
+        //res.render('auth/register', { layout: false })
+        res.render('auth/register', )
+
+
     }
 
     //[GET]/auth/login
@@ -24,7 +27,7 @@ class AuthController {
         User.findOne({ username: username })
             .then(data => {
                 if (data) {
-                    res.send('Tài khoản đã tồn tại')
+                    res.send('Tài khoản đã tồn tại');
                 } else {
                     const user = User({
                         username: req.body.username,
@@ -32,7 +35,7 @@ class AuthController {
                     });
                     user.password = bcrypt.hashSync(req.body.password, 10);
                     user.save()
-                        .then(() => res.redirect('/'))
+                        .then(() => res.redirect('/auth/login'))
                         .catch(err => {})
                 }
             })
@@ -48,24 +51,30 @@ class AuthController {
         const password = req.body.password
         User.findOne({
                 username: username,
-                password: password
+                password: password,
             })
             .then(user => {
                 if (user) {
-                    res.redirect('/'), {
-                        user: mongooseToObject(user)
-                    }
-                } else {
-                    res.send("Nhập không đúng")
-                }
+                    req.session.userId = user
+                    res.redirect('/me')
 
+                } else {
+                    res.redirect('/auth/login')
+                }
             })
             .catch(err => {
                 res.status(500).json('Có lỗi phía server')
             })
     }
 
+    requiresLogin(req, res, next) {
+        if (req.session && req.session.userId) {
+            return next();
+        } else {
+            res.send('Bạn cần đăng nhập');
 
+        }
+    }
 
 }
 module.exports = new AuthController;

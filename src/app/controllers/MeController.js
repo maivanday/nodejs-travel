@@ -7,15 +7,18 @@ const { mongooseToObject } = require('../../until/mongoose');
 
 class MeController {
 
+
+
+
     // [GET] /me/stored/provinces
     storedProvinces(req, res, next) {
-
         // gom 2 promise 
         Promise.all([Province.find({}), Province.countDocumentsDeleted()])
             .then(([provinces, deletedCount]) =>
                 res.render('me/stored-provinces', {
                     deletedCount,
-                    provinces: mutipleMongooseToObject(provinces)
+                    provinces: mutipleMongooseToObject(provinces),
+                    username: req.session.userId,
                 })
             )
             .catch(next)
@@ -40,7 +43,8 @@ class MeController {
     trashProvinces(req, res, next) {
         Province.findDeleted({})
             .then(provinces => res.render('me/trash-provinces', {
-                provinces: mutipleMongooseToObject(provinces)
+                provinces: mutipleMongooseToObject(provinces),
+                username: req.session.userId,
             }))
             .catch(next);
     }
@@ -53,7 +57,8 @@ class MeController {
             .then(([destination, deletedCount]) =>
                 res.render('me/stored-destinations', {
                     deletedCount,
-                    destination: mutipleMongooseToObject(destination)
+                    destination: mutipleMongooseToObject(destination),
+                    username: req.session.userId,
                 })
             )
             .catch(next)
@@ -63,7 +68,8 @@ class MeController {
     trashDestinations(req, res, next) {
         Destination.findDeleted({})
             .then(destinations => res.render('me/trash-destinations', {
-                destinations: mutipleMongooseToObject(destinations)
+                destinations: mutipleMongooseToObject(destinations),
+                username: req.session.userId,
             }))
             .catch(next);
     }

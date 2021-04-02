@@ -45,7 +45,7 @@ class ProvinceController {
 
     // [GET] /provinces/create
     create(req, res, next) {
-        res.render('provinces/create')
+        res.render('provinces/create', { username: req.session.userId })
     }
 
     // [GET] /provinces/:id/edit

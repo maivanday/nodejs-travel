@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const provinceController = require('../app/controllers/ProvinceController');
+const authController = require('../app/controllers/AuthController');
 const multer = require('multer');
 
 
@@ -31,7 +32,7 @@ var upload = multer({
 
 
 //[GET]/province/create
-router.get('/create', provinceController.create);
+router.get('/create', authController.requiresLogin, provinceController.create);
 
 //[POST]/province/store
 router.post('/store', upload.single('imgProvince'), provinceController.store);

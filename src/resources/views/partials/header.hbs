@@ -19,11 +19,11 @@
                 </li>
             </ul>
 
-            {{#if user}}
+            {{#if username}}
             <ul class="navbar-nav">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
-                        avatar
+                        <span>xin chao {{username.username}}</span>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="/provinces/create">Thêm khu vực du lịch</a>
@@ -33,6 +33,9 @@
                         <a class="dropdown-item" href="#">Đăng suất</a>
                     </div>
                 </li>
+            </ul>
+            {{else}}
+            <ul class="navbar-nav">
                 <li class="nav-item active">
                     <a class="nav-link" href="/auth/register">Đăng ký</a>
                 </li>
@@ -40,7 +43,11 @@
                     <a class="nav-link" href="/auth/login">Đăng nhập </a>
                 </li>
             </ul>
+
             {{/if}}
+
+
+
         </div>
     </nav>
 

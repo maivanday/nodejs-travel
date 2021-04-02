@@ -6,11 +6,11 @@ const multer = require('multer');
 //[GET]/auth/register
 router.get('/register', authController.showFormRegister);
 
-//[GET]/auth/login
-router.get('/login', authController.showFormLogin);
-
 //[POST]auth/register
 router.post('/register', authController.storeUser);
+
+//[GET]/auth/login
+router.get('/login', authController.showFormLogin);
 
 //[POST]auth/login
 router.post('/login', authController.checkLogin);
