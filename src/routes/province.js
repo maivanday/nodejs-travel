@@ -35,29 +35,29 @@ var upload = multer({
 router.get('/create', authController.requiresLogin, provinceController.create);
 
 //[POST]/province/store
-router.post('/store', upload.single('imgProvince'), provinceController.store);
+router.post('/store', authController.requiresLogin, upload.single('imgProvince'), provinceController.store);
 
 //[GET]/province/:slug
 router.get('/:slug', provinceController.show);
 
 //[GET]/province/:id/edit
-router.get('/:id/edit', provinceController.edit);
+router.get('/:id/edit', authController.requiresLogin, authController.checkRole, provinceController.edit);
 
 
 //[PATCH]/province/:id/restore
-router.patch('/:id/restore', provinceController.restore);
+router.patch('/:id/restore', authController.requiresLogin, provinceController.restore);
 
 //[POST]/province/:id
-router.post('/handle-form-actions', provinceController.handleFormActions);
+router.post('/handle-form-actions', authController.requiresLogin, provinceController.handleFormActions);
 
 //[PUT]/province/:id
-router.put('/:id', upload.single('imgProvince'), provinceController.update);
+router.put('/:id', authController.requiresLogin, authController.checkRole, upload.single('imgProvince'), provinceController.update);
 
 //[DELETE]/province/:id
-router.delete('/:id', provinceController.destroy);
+router.delete('/:id', authController.requiresLogin, authController.checkRole, provinceController.destroy);
 
 //[DELETE]/province/:id/force
-router.delete('/:id/force', provinceController.forceDestroy);
+router.delete('/:id/force', authController.requiresLogin, authController.checkRole, provinceController.forceDestroy);
 
 //[GET]/province
 router.get('/', provinceController.index);

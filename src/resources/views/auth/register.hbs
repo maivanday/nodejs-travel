@@ -1,5 +1,10 @@
-<div class="container margin-top">
+<div class="container margin-top" class="modal fade" id="register">
     <form id="reg_form" action="/auth/register" method="POST">
+        {{#if message}}
+        <div class="alert alert-warning" role="alert">
+            {{message}}
+        </div>
+        {{/if}}
         <div class="form-group">
             <label for="username">Email</label>
             <input type="email" class="form-control" id="username" placeholder="Nhập Email" name="username" required>
@@ -11,4 +16,5 @@
         </div>
         <button type="submit" class="btn btn-primary">Đăng ký</button>
     </form>
+
 </div>

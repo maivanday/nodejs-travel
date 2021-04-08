@@ -32,6 +32,7 @@ class ProvinceController {
             res.render('provinces/show', {
                 province: mongooseToObject(province),
                 destination: mutipleMongooseToObject(destination),
+                username: req.session.userId,
             });
 
         }
@@ -52,13 +53,14 @@ class ProvinceController {
     edit(req, res, next) {
         Province.findById(req.params.id)
             .then(province => res.render('provinces/edit', {
-                province: mongooseToObject(province)
+                province: mongooseToObject(province),
+                username: req.session.userId
             }))
             .catch(next);
 
     }
 
-    //[PUT] /provinces/:id
+    //[PUT] /provinces/:id/edit
     update(req, res, next) {
         // Province.updateOne({ _id: req.params.id }, req.body)
         //     .then(() => res.redirect('/me/stored/provinces'))
@@ -67,7 +69,7 @@ class ProvinceController {
         //if no choose new file
         if (!req.file) {
             Province.updateOne({ _id: req.params.id }, {
-                    name: req.body.name,
+                    // name: req.body.name,
                     description: req.body.description,
 
                 })
@@ -75,12 +77,9 @@ class ProvinceController {
                 .catch(next);
         } else {
             Province.updateOne({ _id: req.params.id }, {
-                    name: req.body.name,
                     description: req.body.description,
                     img: req.file.filename,
                     slug: req.body.name
-
-
 
                 })
                 .then(() => res.redirect('/me/stored/provinces'))
@@ -155,13 +154,12 @@ class ProvinceController {
     index(req, res, next) {
         // viet theo promise
         Province.find({})
-
-        .then(provinces => {
+            .then(provinces => {
                 // provinces: provinces
                 // neu key = value ta co the viet 1 cai
-
                 res.render('provinces/index', {
-                    provinces: mutipleMongooseToObject(provinces)
+                    provinces: mutipleMongooseToObject(provinces),
+                    username: req.session.userId,
                 });
             })
             // .catch(err => next(err));

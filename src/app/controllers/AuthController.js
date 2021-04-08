@@ -27,7 +27,7 @@ class AuthController {
         User.findOne({ username: username })
             .then(data => {
                 if (data) {
-                    res.send('Tài khoản đã tồn tại');
+                    res.render('auth/register', { message: 'Email đã tồn tại' })
                 } else {
                     const user = User({
                         username: req.body.username,
@@ -39,41 +39,71 @@ class AuthController {
                         .catch(err => {})
                 }
             })
-
-        .catch(err => {
-            res.json("that bai")
-        })
+            .catch(err => {
+                res.json("error in server")
+            })
     }
 
     //[POST]/auth/login
     checkLogin(req, res, next) {
         const username = req.body.username
         const password = req.body.password
+            //const password = bcrypt.hashSync(req.body.password, 10)
+            //res.json(password)
         User.findOne({
                 username: username,
-                password: password,
             })
             .then(user => {
-                if (user) {
+                if (bcrypt.compareSync(password, user.password)) {
                     req.session.userId = user
                     res.redirect('/me')
+                } else {;
 
+                    res.render('auth/login', { message: 'Sai mật khẩu, vui lòng nhập lại' })
+                }
+            })
+            .catch(err => {
+
+                res.status(500).json('error in server')
+            })
+    }
+
+    //check requiresLogin
+    requiresLogin(req, res, next) {
+        if (req.session && req.session.userId) {
+            return next();
+        } else {
+            //res.send('Bạn cần đăng nhập');
+            res.redirect('/auth/login')
+        }
+    }
+
+    //logout
+    logout(req, res, next) {
+        req.session.destroy();
+        res.redirect('/');
+    }
+
+
+    // check role
+    checkRole(req, res, next) {
+        const username = req.session.userId.username
+            //const userAth = username.username
+            //res.json({ username })
+        User.findOne({
+                username: username,
+                roleId: 1
+            })
+            .then(data => {
+                if (data) {
+                    next();
                 } else {
                     res.redirect('/auth/login')
                 }
             })
             .catch(err => {
-                res.status(500).json('Có lỗi phía server')
+                res.status(500).json('error in server')
             })
-    }
-
-    requiresLogin(req, res, next) {
-        if (req.session && req.session.userId) {
-            return next();
-        } else {
-            res.send('Bạn cần đăng nhập');
-
-        }
     }
 
 }

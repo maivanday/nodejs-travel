@@ -18,7 +18,8 @@ class DestinationController {
                 // provinces: provinces
                 // neu key = value ta co the viet 1 cai
                 res.render('destinations/index', {
-                    destinations: mutipleMongooseToObject(destinations)
+                    destinations: mutipleMongooseToObject(destinations),
+                    username: req.session.userId,
                 });
             })
             // .catch(err => next(err));
@@ -27,14 +28,15 @@ class DestinationController {
 
     // [GET] /destination/create
     create(req, res, next) {
-        res.render('destinations/createDestination')
+        res.render('destinations/createDestination', { username: req.session.userId })
     }
 
     // [GET] /destinations/:id/edit
     edit(req, res, next) {
         Destination.findById(req.params.id)
             .then(destination => res.render('destinations/editDestination', {
-                destination: mongooseToObject(destination)
+                destination: mongooseToObject(destination),
+                username: req.session.userId
             }))
             .catch(next);
 
@@ -69,6 +71,7 @@ class DestinationController {
             .then((destination) => {
                 res.render('destinations/showDetail', {
                     destination: mongooseToObject(destination),
+                    username: req.session.userId,
                 });
                 // res.json({ province });
             })

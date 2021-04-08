@@ -8,8 +8,8 @@ const route = require('./routes');
 const db = require('./config/db');
 const methodOverride = require('method-override');
 const multer = require('multer');
-const session = require('express-session')
-
+const session = require('express-session');
+//const flash = require('express-flash-messages')
 
 
 
@@ -50,6 +50,8 @@ app.use(session({
 
 app.use(express.json());
 
+//flash messages
+//app.use(flash())
 
 //app.use(morgan('combined'))
 // router
