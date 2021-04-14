@@ -104,76 +104,77 @@
     </form>
     {{!-- hidden form --}}
     <form name="delete-destination-form" method="POST" action=""></form>
+</div>
+<div class="marginFooter"></div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var destinationId;
+        var deleteForm = document.forms['delete-destination-form'];
+        //var submitAllForm = document.forms['container-form'];
+        var submitAllForm = $('form[name="container-form"]');
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            var destinationId;
-            var deleteForm = document.forms['delete-destination-form'];
-            //var submitAllForm = document.forms['container-form'];
-            var submitAllForm = $('form[name="container-form"]');
-
-            var btnDeletedestination = document.getElementById('btn-delete-destination');
-            var checkboxAll = $('#checkbox-all');
-            var destinationItemCheckbox = $('input[name="destinationIds[]"]');
-            var checkAllSubmitBtn = $('.checkAllBtn');
+        var btnDeletedestination = document.getElementById('btn-delete-destination');
+        var checkboxAll = $('#checkbox-all');
+        var destinationItemCheckbox = $('input[name="destinationIds[]"]');
+        var checkAllSubmitBtn = $('.checkAllBtn');
 
 
 
-            $('#delete-destination').on('show.bs.modal', function (event) {
-                var button = $(event.relatedTarget)
-                destinationId = button.data('id')
+        $('#delete-destination').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget)
+            destinationId = button.data('id')
 
-            });
-
-            btnDeletedestination.onclick = function () {
-                deleteForm.action = '/destinations/' + destinationId + "?_method=DELETE";
-                deleteForm.submit();
-            }
-            //checkbox all change
-            checkboxAll.change(function () {
-                // return boolean
-                var isCheckboxAll = $(this).prop("checked");
-                if (isCheckboxAll) {
-                    destinationItemCheckbox.prop("checked", isCheckboxAll);
-
-                } else {
-                    destinationItemCheckbox.prop("checked", isCheckboxAll);
-
-                }
-                renderCheckAllBtn();
-
-            });
-
-            // destination Item Checkbox change 
-            destinationItemCheckbox.change(function () {
-                // count checkbox  vs checkbox run
-                isCheckboxAll = destinationItemCheckbox.length === $('input[name="destinationIds[]"]:checked').length;
-                checkboxAll.prop('checked', isCheckboxAll);
-                renderCheckAllBtn();
-            });
-
-            //check all submit btnss
-            /*
-            submitAllForm.on('submit', function (e) {
- 
-                var isSubmitable = !checkAllSubmitBtn.hasClass('disabled');
-                if (!isSubmitable) {
-                    e.preventDefault();
-                }
-            });
-            */
-            //r render check all button
-            function renderCheckAllBtn() {
-                var checkCount = $('input[name="destinationIds[]"]:checked').length;
-
-                if (checkCount > 0) {
-                    checkAllSubmitBtn.removeAttr('disabled');
-
-                } else {
-
-                    checkAllSubmitBtn.addAttr('disabled');
-                }
-            }
         });
 
-    </script>
+        btnDeletedestination.onclick = function () {
+            deleteForm.action = '/destinations/' + destinationId + "?_method=DELETE";
+            deleteForm.submit();
+        }
+        //checkbox all change
+        checkboxAll.change(function () {
+            // return boolean
+            var isCheckboxAll = $(this).prop("checked");
+            if (isCheckboxAll) {
+                destinationItemCheckbox.prop("checked", isCheckboxAll);
+
+            } else {
+                destinationItemCheckbox.prop("checked", isCheckboxAll);
+
+            }
+            renderCheckAllBtn();
+
+        });
+
+        // destination Item Checkbox change 
+        destinationItemCheckbox.change(function () {
+            // count checkbox  vs checkbox run
+            isCheckboxAll = destinationItemCheckbox.length === $('input[name="destinationIds[]"]:checked').length;
+            checkboxAll.prop('checked', isCheckboxAll);
+            renderCheckAllBtn();
+        });
+
+        //check all submit btnss
+        /*
+        submitAllForm.on('submit', function (e) {
+ 
+            var isSubmitable = !checkAllSubmitBtn.hasClass('disabled');
+            if (!isSubmitable) {
+                e.preventDefault();
+            }
+        });
+        */
+        //r render check all button
+        function renderCheckAllBtn() {
+            var checkCount = $('input[name="destinationIds[]"]:checked').length;
+
+            if (checkCount > 0) {
+                checkAllSubmitBtn.removeAttr('disabled');
+
+            } else {
+
+                checkAllSubmitBtn.addAttr('disabled');
+            }
+        }
+    });
+
+</script>

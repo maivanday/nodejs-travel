@@ -108,77 +108,76 @@
     </div>
     {{!-- hidden form --}}
     <form name="delete-province-form" method="POST" action=""></form>
+</div>
+<div class="marginFooter"></div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var provinceId;
+        var deleteForm = document.forms['delete-province-form'];
+        //var submitAllForm = document.forms['container-form'];
+        var submitAllForm = $('form[name="container-form"]');
+        var btnDeleteProvince = document.getElementById('btn-delete-province');
+        var checkboxAll = $('#checkbox-all');
+        var provinceItemCheckbox = $('input[name="provinceIds[]"]');
+        var checkAllSubmitBtn = $('.checkAllBtn');
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            var provinceId;
-            var deleteForm = document.forms['delete-province-form'];
-            //var submitAllForm = document.forms['container-form'];
-            var submitAllForm = $('form[name="container-form"]');
-            var btnDeleteProvince = document.getElementById('btn-delete-province');
-            var checkboxAll = $('#checkbox-all');
-            var provinceItemCheckbox = $('input[name="provinceIds[]"]');
-            var checkAllSubmitBtn = $('.checkAllBtn');
 
-
-            $('#delete-province').on('show.bs.modal', function (event) {
-                var button = $(event.relatedTarget)
-                provinceId = button.data('id')
-
-            });
-
-            btnDeleteProvince.onclick = function () {
-                deleteForm.action = '/provinces/' + provinceId + "?_method=DELETE";
-                deleteForm.submit();
-            }
-            //checkbox all change
-            checkboxAll.change(function () {
-                // return boolean
-                var isCheckboxAll = $(this).prop("checked");
-                if (isCheckboxAll) {
-                    provinceItemCheckbox.prop("checked", isCheckboxAll);
-
-                } else {
-                    provinceItemCheckbox.prop("checked", isCheckboxAll);
-
-                }
-                renderCheckAllBtn();
-
-            });
-
-            // province Item Checkbox change 
-            provinceItemCheckbox.change(function () {
-                // count checkbox  vs checkbox run
-                isCheckboxAll = provinceItemCheckbox.length === $('input[name="provinceIds[]"]:checked').length;
-                checkboxAll.prop('checked', isCheckboxAll);
-                renderCheckAllBtn();
-            });
-
-            //check all submit btn
-            /*
-            submitAllForm.on('submit', function (e) {
-
-                var isSubmitable = !checkAllSubmitBtn.hasClass('disabled');
-                if (!isSubmitable) {
-                    e.preventDefault();
-                }
-            });
-            */
-
-            //r render check all button
-            function renderCheckAllBtn() {
-                var checkCount = $('input[name="provinceIds[]"]:checked').length;
-
-                if (checkCount > 0) {
-                    checkAllSubmitBtn.removeAttr('disabled');
-
-                } else {
-
-                    checkAllSubmitBtn.addAttr('disabled');
-                }
-            }
-
+        $('#delete-province').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget)
+            provinceId = button.data('id')
 
         });
 
-    </script>
+        btnDeleteProvince.onclick = function () {
+            deleteForm.action = '/provinces/' + provinceId + "?_method=DELETE";
+            deleteForm.submit();
+        }
+        //checkbox all change
+        checkboxAll.change(function () {
+            // return boolean
+            var isCheckboxAll = $(this).prop("checked");
+            if (isCheckboxAll) {
+                provinceItemCheckbox.prop("checked", isCheckboxAll);
+
+            } else {
+                provinceItemCheckbox.prop("checked", isCheckboxAll);
+
+            }
+            renderCheckAllBtn();
+
+        });
+
+        // province Item Checkbox change 
+        provinceItemCheckbox.change(function () {
+            // count checkbox  vs checkbox run
+            isCheckboxAll = provinceItemCheckbox.length === $('input[name="provinceIds[]"]:checked').length;
+            checkboxAll.prop('checked', isCheckboxAll);
+            renderCheckAllBtn();
+        });
+
+        //check all submit btn
+        /*
+        submitAllForm.on('submit', function (e) {
+ 
+            var isSubmitable = !checkAllSubmitBtn.hasClass('disabled');
+            if (!isSubmitable) {
+                e.preventDefault();
+            }
+        });
+        */
+
+        //r render check all button
+        function renderCheckAllBtn() {
+            var checkCount = $('input[name="provinceIds[]"]:checked').length;
+
+            if (checkCount > 0) {
+                checkAllSubmitBtn.removeAttr('disabled');
+
+            } else {
+
+                checkAllSubmitBtn.addAttr('disabled');
+            }
+        }
+    });
+
+</script>

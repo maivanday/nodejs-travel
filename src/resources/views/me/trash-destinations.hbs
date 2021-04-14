@@ -78,36 +78,37 @@
     <form name="delete-destination-form" method="POST" action=""></form>
     <form name="restore-destination-form" method="POST" action=""></form>
 
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            var destinationId;
-            var deleteForm = document.forms['delete-destination-form']
-            var restoreForm = document.forms['restore-destination-form']
-            var btnDeleteDestination = document.getElementById('btn-delete-destination');
-            var restoreBtn = $('.btn-restore');
-
-
-            $('#delete-destination').on('show.bs.modal', function (event) {
-                var button = $(event.relatedTarget)
-                destinationId = button.data('id')
+</div>
+<div class="marginFooter"></div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var destinationId;
+        var deleteForm = document.forms['delete-destination-form']
+        var restoreForm = document.forms['restore-destination-form']
+        var btnDeleteDestination = document.getElementById('btn-delete-destination');
+        var restoreBtn = $('.btn-restore');
 
 
-            });
-            btnDeleteDestination.onclick = function () {
-                deleteForm.action = '/destinations/' + destinationId + "/force/?_method=DELETE";
-                deleteForm.submit();
-            }
+        $('#delete-destination').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget)
+            destinationId = button.data('id')
 
-            //restore btn
-            restoreBtn.click(function (e) {
-                e.preventDefault();
-                var destinationId = $(this).data('id');
 
-                restoreForm.action = '/destinations/' + destinationId + "/restore/?_method=PATCH";
-                restoreForm.submit();
-
-            });
         });
+        btnDeleteDestination.onclick = function () {
+            deleteForm.action = '/destinations/' + destinationId + "/force/?_method=DELETE";
+            deleteForm.submit();
+        }
 
-    </script>
+        //restore btn
+        restoreBtn.click(function (e) {
+            e.preventDefault();
+            var destinationId = $(this).data('id');
+
+            restoreForm.action = '/destinations/' + destinationId + "/restore/?_method=PATCH";
+            restoreForm.submit();
+
+        });
+    });
+
+</script>

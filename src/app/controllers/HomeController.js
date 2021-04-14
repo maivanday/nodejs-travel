@@ -12,13 +12,12 @@ class HomeController {
         // const destinations = await Destination.find({});
         // res.json({ provinces, destinations });
         try {
-            const itemInPage = 2;
+            const itemInPage = 9;
             //  const page = req.params.page || 1;
             const page = req.query.page;
             const skip = (page - 1) * itemInPage;
             const provinces = await Province.find({}).skip(skip).limit(itemInPage);
             const destinations = await Destination.find({}).skip(skip).limit(itemInPage);
-
             res.render('home', {
                 provinces: mutipleMongooseToObject(provinces),
                 destinations: mutipleMongooseToObject(destinations),
@@ -43,7 +42,7 @@ class HomeController {
                 destinations: mutipleMongooseToObject(destinations),
                 username: req.session.userId,
             });
-            console.log(username)
+            // console.log(username)
         }
 
         // res.json({ province });

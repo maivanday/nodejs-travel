@@ -43,9 +43,8 @@ router.get('/:slug', provinceController.show);
 //[GET]/province/:id/edit
 router.get('/:id/edit', authController.requiresLogin, authController.checkRole, provinceController.edit);
 
-
 //[PATCH]/province/:id/restore
-router.patch('/:id/restore', authController.requiresLogin, provinceController.restore);
+router.patch('/:id/restore', authController.requiresLogin, authController.checkRole, provinceController.restore);
 
 //[POST]/province/:id
 router.post('/handle-form-actions', authController.requiresLogin, provinceController.handleFormActions);

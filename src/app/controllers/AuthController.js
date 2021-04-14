@@ -58,7 +58,6 @@ class AuthController {
                     req.session.userId = user
                     res.redirect('/me')
                 } else {;
-
                     res.render('auth/login', { message: 'Sai mật khẩu, vui lòng nhập lại' })
                 }
             })

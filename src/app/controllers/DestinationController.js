@@ -101,11 +101,10 @@ class DestinationController {
     }
 
 
-    //[PUT] /destinations/:id
+    //[PUT] /destinations/:id/edit
     update(req, res, next) {
         //if no choose new file
-        if (!req.files) {
-
+        if (!filenames) {
             Destination.updateOne({ _id: req.params.id }, {
                     name: req.body.name,
                     description: req.body.description,

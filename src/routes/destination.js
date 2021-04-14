@@ -57,7 +57,7 @@ router.post('/handle-form-actions', authController.requiresLogin, authController
 
 
 //[PATCH]/destinations/:id/restore
-router.patch('/:id/restore', authController.requiresLogin, destinationController.restore);
+router.patch('/:id/restore', authController.requiresLogin, authController.checkRole, destinationController.restore);
 
 //[GET]/destinations/:slug
 router.get('/:slug', destinationController.showDetail);

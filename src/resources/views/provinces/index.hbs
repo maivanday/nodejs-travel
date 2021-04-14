@@ -1,28 +1,64 @@
 <div class="container-fluid margin-top">
     <!-- Tab items -->
-    <div class="tabs">
-        <div class="row ">
+    <div class="tabs ">
+        <div class="row first-tab">
             {{#each provinces}}
-            <div class="tab-item active ">
+            <div class="tab-item">
                 {{this.name}}
             </div>
             {{/each}}
+
+            {{!-- <div class="tab-item active">
+                Cần Thơ
+            </div>
+            <div class="tab-item ">s
+                Hậu Giang
+            </div>
+            <div class="tab-item ">
+                Sóc Trăng
+            </div>
+            <div class="tab-item ">
+                Bạc liêu
+            </div>
+            <div class="tab-item ">
+                Cà Mau
+            </div>
+            <div class="tab-item ">
+                Vĩnh Long
+            </div>
+            <div class="tab-item ">
+                Bến Tre
+            </div>
+            <div class="tab-item ">
+                Trà Vinh
+            </div>
+            <div class="tab-item ">
+                An Giang
+            </div>
+            <div class="tab-item ">
+                Đồng Tháp
+            </div>
+            <div class="tab-item ">
+                Kiên Giang
+            </div>
+            <div class="tab-item ">
+                Tiền Giang
+            </div>
+            <div class="tab-item ">
+                Long An
+            </div> --}}
+
             <div class="line"></div>
         </div>
     </div>
-
     <!-- Tab content -->
     <div class="tab-content mt-5 container">
-        {{!-- cantho --}}
-        <div class="row ">
+        <div class="row first-content">
             {{#each provinces}}
-            <div class="tab-pane active">
+            <div class="tab-pane  mt-5">
                 <div class=" col-12">
                     <div class="destination-body">
-
                         <h5 class="text-center">Giới thiệu đôi nét về tỉnh {{this.name}}</h5>
-
-
                         <p class="description">{{this.description}}</p>
                         <a href="/provinces/{{this.slug}} ">
                             <h6 class="text-right">Tìm hiểu thêm về {{this.name}}....</h5>
@@ -38,5 +74,6 @@
         </div>
     </div>
 </div>
+
 {{!-- js for line css --}}
 <script src="../../js/tabUi.js"></script>

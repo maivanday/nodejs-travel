@@ -77,37 +77,38 @@
     {{!-- hidden form --}}
     <form name="delete-province-form" method="POST" action=""></form>
     <form name="restore-province-form" method="POST" action=""></form>
+</div>
+<div class="marginFooter"></div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var provinceId;
+        var deleteForm = document.forms['delete-province-form']
+        var restoreForm = document.forms['restore-province-form']
+        var btnDeleteProvince = document.getElementById('btn-delete-province');
+        var restoreBtn = $('.btn-restore');
 
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            var provinceId;
-            var deleteForm = document.forms['delete-province-form']
-            var restoreForm = document.forms['restore-province-form']
-            var btnDeleteProvince = document.getElementById('btn-delete-province');
-            var restoreBtn = $('.btn-restore');
+        $('#delete-province').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget)
+            provinceId = button.data('id')
 
 
-            $('#delete-province').on('show.bs.modal', function (event) {
-                var button = $(event.relatedTarget)
-                provinceId = button.data('id')
-
-
-            });
-            btnDeleteProvince.onclick = function () {
-                deleteForm.action = '/provinces/' + provinceId + "/force/?_method=DELETE";
-                deleteForm.submit();
-            }
-
-            //restore btn
-            restoreBtn.click(function (e) {
-                e.preventDefault();
-                var provinceId = $(this).data('id');
-
-                restoreForm.action = '/provinces/' + provinceId + "/restore/?_method=PATCH";
-                restoreForm.submit();
-
-            });
         });
+        btnDeleteProvince.onclick = function () {
+            deleteForm.action = '/provinces/' + provinceId + "/force/?_method=DELETE";
+            deleteForm.submit();
+        }
 
-    </script>
+        //restore btn
+        restoreBtn.click(function (e) {
+            e.preventDefault();
+            var provinceId = $(this).data('id');
+
+            restoreForm.action = '/provinces/' + provinceId + "/restore/?_method=PATCH";
+            restoreForm.submit();
+
+        });
+    });
+
+</script>
