@@ -11,8 +11,6 @@ const multer = require('multer');
 const session = require('express-session');
 //const flash = require('express-flash-messages')
 
-
-
 //connect DB 
 db.connect();
 
@@ -57,6 +55,6 @@ app.use(express.json());
 // router
 route(app);
 
-app.listen(port, () => {
+app.listen(process.env.PORT, () => {
     console.log(` App listening at http://localhost:${port}`)
 })
