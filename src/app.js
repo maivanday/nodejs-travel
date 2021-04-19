@@ -55,6 +55,6 @@ app.use(express.json());
 // router
 route(app);
 
-app.listen(process.env.PORT, () => {
+app.listen(process.env.PORT || 5000, () => {
     console.log(` App listening at http://localhost:${port}`)
 })
