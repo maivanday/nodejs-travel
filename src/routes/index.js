@@ -4,8 +4,6 @@ const destinationRouter = require('./destination');
 const meRouter = require('./me');
 const authRouter = require('./auth')
 
-
-
 function route(app) {
     //[GET]/
     app.use('/', homeRouter);
@@ -21,8 +19,5 @@ function route(app) {
 
     //[GET]/me
     app.use('/me', meRouter);
-
-
 }
-
 module.exports = route;
