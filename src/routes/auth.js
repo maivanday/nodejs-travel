@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const authController = require('../app/controllers/AuthController');
-const multer = require('multer');
+//const authController = require('../app/controllers/AuthController');
+const authController = require('src/app/controllers/AuthController');
+
+//const multer = require('multer');
 
 //[GET]/auth/register
 router.get('/register', authController.showFormRegister);
