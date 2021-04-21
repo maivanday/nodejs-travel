@@ -1,0 +1,135 @@
+#header {
+  background-color: #38b6ff;
+  line-height: auto;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  right: 0; }
+  #header a {
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 400; }
+  #header .navbar-nav li a:hover {
+    color: #040436; }
+  #header .dropdown-menu {
+    background-color: rgba(0, 118, 206, 0.8); }
+
+.margin-top {
+  margin-top: 150px; }
+
+P {
+  font-size: 20px;
+  text-align: justify;
+  line-height: 1.6; }
+
+/* -------------------------home-----------------------------------------------------------*/
+.slide {
+  position: relative;
+  margin-top: 113px;
+  padding-top: 50%;
+  width: 100%;
+  background: url("/img/slider_1.jpg") top center/cover no-repeat; }
+  .slide #text-content {
+    position: absolute;
+    bottom: 50px;
+    color: #080858;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center; }
+    .slide #text-content .text-heading {
+      font-size: 35px;
+      font-weight: 500; }
+    .slide #text-content .text-description {
+      font-size: 25px; }
+
+#content .section-heading {
+  font-size: 35px;
+  font-weight: 500;
+  text-align: center; }
+
+#content .section-heading-sub {
+  font-size: 25px;
+  font-weight: 400;
+  text-align: center;
+  font-style: italic;
+  opacity: 0.9; }
+
+#content .text {
+  font-size: 20px;
+  text-align: justify;
+  line-height: 1.6; }
+
+.destination-img {
+  width: 350px;
+  height: 240px;
+  transition: transform .8s; }
+
+.destination-img:hover {
+  transform: scale(1.035); }
+
+.destination-body {
+  padding: 16px;
+  font-size: 15px; }
+  .destination-body a {
+    text-decoration: none; }
+  .destination-body .description {
+    height: 187.8px;
+    overflow: hidden;
+    display: block;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 6; }
+
+/* -------------------------provinces-----------------------------------------------------------*/
+/*index province */
+.tabs {
+  display: flex;
+  position: relative; }
+  .tabs .tab-item {
+    min-width: 80px;
+    padding: 16px 20px 11px 20px;
+    font-size: 20px;
+    text-align: center;
+    color: blue;
+    background-color: #fff;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom: 5px solid transparent;
+    opacity: 0.6;
+    cursor: pointer;
+    transition: all 0.5s ease; }
+  .tabs .line {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 6px;
+    border-radius: 15px;
+    background-color: #22069c;
+    transition: all 0.2s ease; }
+  .tabs .tab-item:hover {
+    opacity: 1;
+    background-color: rgba(33, 12, 153, 0.05);
+    border-color: rgba(37, 9, 163, 0.1); }
+
+.tab-content a {
+  text-decoration: none; }
+
+.tab-content .tab-pane {
+  color: #333;
+  display: none; }
+
+.tab-content .tab-pane.active {
+  display: block; }
+
+.tab-content .tab-pane h2 {
+  font-size: 24px;
+  margin-bottom: 8px; }
+
+/*----------------------------------------------------------------footer-----------------*/
+.marginFooter {
+  margin-top: 663px; }
+
+footer {
+  background-color: #87c4ec; }
