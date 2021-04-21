@@ -1,9 +1,11 @@
 const express = require('express');
 const router = express.Router();
 //const destinationController = require('../app/controllers/DestinationController');
-const authController = require('src/app/controllers/AuthController');
+const authController = require('../../controllers/AuthController');
 
-const authController = require('../app/controllers/AuthController');
+//const authController = require('../app/controllers/AuthController');
+const authController = require('../../controllers/AuthController');
+
 
 const multer = require('multer');
 //const upload = multer({ dest: '../app/public/uploads/imgDestinations/' })

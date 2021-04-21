@@ -1,7 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const provinceController = require('../app/controllers/ProvinceController');
-const authController = require('../app/controllers/AuthController');
+//const homeController = require('../app/controllers/HomeController');
+const homeController = require('../../controllers/HomeController');
+
+//const provinceController = require('../app/controllers/ProvinceController');
+const provinceController = require('../../controllers/ProvinceController');
+
+//const authController = require('../app/controllers/AuthController');
+const authController = require('../../controllers/AuthController');
+
 const multer = require('multer');
 
 
